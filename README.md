@@ -97,7 +97,6 @@ A aplicação ficará disponível em [http://localhost:3000](http://localhost:30
 
 * As passwords dos utilizadores são armazenadas com hash (bcrypt).
 * As requisições às APIs externas são feitas no servidor, protegendo as chaves de API.
-* O projeto pode ser facilmente expandido com novas funcionalidades (ex: guardar histórico de pesquisas).
 
 ---
 
