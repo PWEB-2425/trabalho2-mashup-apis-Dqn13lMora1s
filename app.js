@@ -38,7 +38,7 @@ app.use('/pesquisa.html', estaAutenticado, (req, res, next) => {
     next(); // deixa passar se autenticado
 });
 
-// Servir ficheiros estáticos da pasta "public"
+// Servir ficheiros estáticos da pasta "publico"
 app.use(express.static('publico'));
 
 app.get('/', (req, res) => {
@@ -61,10 +61,10 @@ app.post('/login', async (req, res) => {
       `);
     }
 
-    // Compare the entered password with the hashed password
+    // Compara a password entrada com a hashed password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      // Password incorrect
+      // Password incorreta
       return res.status(401).send(`
         <script>
           alert('Nome de utilizador ou palavra-passe incorretos. Tente novamente.');
@@ -73,7 +73,7 @@ app.post('/login', async (req, res) => {
       `);
     }
 
-    // Password matched - login success
+    // Password cooreta - login sucesso
     req.session.username = user.username;
     res.redirect('/pesquisa.html');
 
@@ -83,7 +83,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// POST /register
+// Register
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
