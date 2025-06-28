@@ -91,7 +91,7 @@ A aplicação ficará disponível em [http://localhost:3000](http://localhost:30
 
 ## Link de Deployment
 
-\[Colocar aqui o link para a aplicação online (ex: Render)]
+\[https://trabalho2-mashup-apis-dqn13lmora1s.onrender.com]
 
 ## Observações
 
