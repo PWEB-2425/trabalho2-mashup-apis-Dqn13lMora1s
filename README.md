@@ -1,73 +1,104 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/psUndoci)
-# Trabalho #2 API MASHUP
+# API Mashup - Pesquisa de Países e Clima
 
-**Data de Entrega:** 26 de junho de 2025
+Projeto desenvolvido para a unidade curricular de Programação Web - Trabalho #2.
+
+## Identificação do Grupo
+
+* Daniel Morais
+
+## Descrição do Projeto
+
+Esta aplicação web permite aos utilizadores registarem-se, efetuarem login e, após autenticação, pesquisarem informações sobre qualquer país através da integração de duas APIs externas:
+
+* [REST Countries API](https://restcountries.com): Nome, capital, população e bandeira do país.
+* [OpenWeatherMap API](https://openweathermap.org/): Clima atual e previsão meteorológica da capital.
+
+A aplicação utiliza autenticação com sessões Express e armazena os dados dos utilizadores (username e password com hash) em MongoDB.
+
+## Tecnologias Utilizadas
+
+* **Frontend**: HTML, CSS, JavaScript
+* **Backend**: Node.js, Express
+* **Autenticação**: express-session, bcrypt
+* **Base de dados**: MongoDB Atlas
+* **APIs externas**: REST Countries API, OpenWeatherMap API
+
+## Instalação e Configuração
+
+### 1. Clonar o repositório
+
+```bash
+git clone <url-do-repositório>
+cd <nome-do-projeto>
+```
+
+### 2. Instalar dependências
+
+```bash
+npm install
+```
+
+### 3. Configurar variáveis de ambiente
+
+Crie um ficheiro `.env` na raiz do projeto com o seguinte conteúdo:
+
+```env
+SECRET=sua_chave_secreta
+MONGOURI=sua_string_de_conexao_mongodb
+WEATHERMAPKEY=sua_chave_api_openweathermap
+PORT=3000
+```
+
+### 4. Certifique-se que o MongoDB está a correr
+
+* Pode usar o [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) ou uma instância local.
+
+## Executar o Projeto
+
+### Modo normal
+
+```bash
+node app.js
+```
+
+A aplicação ficará disponível em [http://localhost:3000](http://localhost:3000) (ou outra porta definida no `.env`).
+
+## Estrutura do Projeto
+
+```
+/api-mashup/
+├── app.js
+├── publico/
+│   ├── login.html
+│   ├── register.html
+│   ├── pesquisa.html
+│   ├── estilo.css
+│   └── pesquisa.js
+├── .env
+├── package.json
+└── README.md
+```
+
+## Como Usar
+
+1. Aceda a `/register.html` para criar uma nova conta.
+2. Faça login em `/login.html` com as suas credenciais.
+3. Após o login, será redirecionado para `/pesquisa.html`.
+4. Pesquise por um país para obter:
+   * Nome, capital, população e bandeira (REST Countries)
+   * Clima atual e previsão dos próximos dias (OpenWeatherMap)
+5. Pode terminar a sessão clicando em "Logout".
+
+## Link de Deployment
+
+\[https://trabalho2-mashup-apis-dqn13lmora1s.onrender.com]
+
+## Observações
+
+* As passwords dos utilizadores são armazenadas com hash (bcrypt).
+* As requisições às APIs externas são feitas no servidor, protegendo as chaves de API.
+* O projeto pode ser facilmente expandido com novas funcionalidades (ex: guardar histórico de pesquisas).
 
 ---
 
-## 1. Objetivo
-
-Desenvolver uma aplicação web que:
-
-- Consuma e integre dados de pelo menos 2 APIs externas, com o **servidor** a efetuar todas as requisições (server-side).
-- Inclua um sistema de autenticação de utilizadores baseado em **Express Sessions** ou **Passport-local**.
-- Utilize base de dados **MongoDB** para armazenar informação dos utilizadores (por exemplo histórico de pesquisas)
-
-## 2. Funcionalidades
-
-1. **Autenticação (Server)**
-   - Registo de utilizador (username + password)
-   - Início de sessão com sessões Express ou Passport-local
-   - Proteção de rotas para apenas utilizadores autenticados
-2. **Mashup de APIs**
-   - O utilizador, após login, introduz um termo de pesquisa (e.g., nome de cidade, artista, palavra)
-   - O servidor consome até duas APIs REST externas e retorna dados integrados ao cliente
-   - **Exemplos de APIs**:
-     - **OpenWeatherMap**: clima da cidade (`/weather?q={city}`)
-     - **RestCountries**: informações do país (`/alpha/{code}`)
-     - **Wikipedia REST API**: resumo de artigos (`/page/summary/{title}`)
-     - **Pixabay** ou **Unsplash**: imagens livres de royalties
-     - **NewsAPI** ou **GNews API**: notícias relacionadas
-     - **TMDB API**: informação e posters de filmes
-3. **Persistência em MongoDB**
-   - Guardar credenciais (idealmente hash das passwords)
-   - Histórico de pesquisas por utilizador
-
-## 3. Tecnologias
-
-- **Frontend**: HTML, CSS (ou Tailwind/Bootstrap), JavaScript
-- **Backend**: Node.js (v12+), Express
-  - Autenticação: **express-session** ou **passport-local**
-  - Chamadas a APIs feitas no servidor com ftech API (alternativamente com **Axios**, ou **node-fetch** em versoes mais antigas) usando **async/await**
-- **Base de Dados**: MongoDB (Atlas ou local)
-
-## 4. APIs Externas (sugeridas)
-
-- **OpenWeatherMap** (clima e geocoding)
-- **RestCountries** (bandeiras, capitais, moedas)
-- **Wikipedia REST API** (enciclopédia)
-- **Pixabay** / **Unsplash** (imagens)
-- **NewsAPI** / **GNews API** (notícias)
-- **Exchange Rates API** (câmbio de moedas)
-- **DictionaryAPI** (definições, sinónimos)
-- **TMDB API** (filmes, trailers)
-
-> **Nota:** Registem-se nas plataformas e obtenham as chaves necessárias. Todas as requisições a estas APIs devem ser feitas pelo servidor, protegendo as suas credenciais. As API Keys não devem ficar expostas no código.
-
-## 5. Regras & Avaliação
-
-1. **Grupos:** 2 elementos por grupo.
-2. **GitHubClassroom:** Repositório privado com acesso ao utilizador `pedromoreira-estg`.
-3. **Build & Install:** Incluir script para instalar dependências e iniciar a aplicação.
-4. **Documentação (`README.md`):** Incluir:
-   - Identificação dos elementos do grupo
-   - Tecnologias e APIs utilizadas
-   - Instruções de instalação e configuração das chaves e do MongoDB
-   - Comandos para executar localmente
-   - Link de deployment (**render.com** ou equivalente)
-5. **Deployment:** Aplicação operacional online (ex.: render.com).
-6. **Entrega em Moodle:** Cópia do `README.md` e `.zip`e **link** do repositório.
-
----
-
-Boa sorte!
+Bom desenvolvimento!
