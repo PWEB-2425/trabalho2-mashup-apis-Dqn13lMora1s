@@ -41,6 +41,10 @@ app.use('/pesquisa.html', estaAutenticado, (req, res, next) => {
 // Servir ficheiros estáticos da pasta "public"
 app.use(express.static('publico'));
 
+app.get('/', (req, res) => {
+  res.redirect('/login.html');
+});
+
 // Login
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
