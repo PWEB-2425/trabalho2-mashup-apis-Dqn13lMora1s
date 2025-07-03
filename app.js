@@ -163,6 +163,14 @@ app.get('/pesquisa/:pais', estaAutenticado, async (req, res) => {
             const weatherData = await weatherRes.json();
             const forecastData = await forecastRes.json();
 
+            if (!weatherRes.ok || !weatherData.weather || !Array.isArray(weatherData.weather) || weatherData.weather.length === 0) {
+                return res.status(500).json({ error: 'Erro ao obter dados do tempo atual' });
+            }
+
+            if (!forecastRes.ok || !forecastData.list || !Array.isArray(forecastData.list)) {
+                return res.status(500).json({ error: 'Erro ao obter previsão meteorológica' });
+            }
+
             info.tempo = {
                 atual: {
                     descricao: weatherData.weather[0].description,
